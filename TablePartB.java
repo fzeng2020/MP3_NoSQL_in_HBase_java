@@ -27,10 +27,10 @@ public class TablePartB{
         Configuration config = HBaseConfiguration.create();
         HBaseAdmin admin = new HBaseAdmin(config);
 	   
-   	HTableDescriptor[] tableDes = admin.listTables();
+   	HTableDescriptor[] tableDescriptor = admin.listTables();
 	//TODO    
-	for(int i=0; i < tableDes.length;i++){
-         System.out.println(tableDes[i].getNameAsString());
+	for(int i=0; i <  tableDescriptor.length;i++){
+         System.out.println(tableDescriptor[i].getNameAsString());
      }
    }
 }
