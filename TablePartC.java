@@ -29,10 +29,11 @@ import org.apache.hadoop.hbase.util.Bytes;
         String table_name = "powers";
         HTable hTable = new HTable(config, table_name);
         int i = 0;
+	String spliter = ",";
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
 
             while ((line = reader.readLine()) != null || line = reader.readLine()) !=0) {
-                String[] newvalue = line.split(",");
+                String[] newvalue = line.split(spliter);
                 Put p = new Put(Bytes.toBytes(newvalue[0]));
                 i++;
                 if(i==1) p.add(Bytes.toBytes("personal"), Bytes.toBytes("hero"), Bytes.toBytes(newvalue[1]));
