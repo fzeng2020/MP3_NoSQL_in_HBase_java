@@ -19,35 +19,28 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 public class TablePartA{
 
-    
     public static void main(String[] args) throws IOException {
- //initilaized HbaseAdmin
-        Configuration config = HBaseConfiguration.create();
-        HBaseAdmin admin = new HBaseAdmin(config);
-       
-       
-        String table_name1 = "powers";
-        String table_name2 = "food";
-    
-        // create new table if not exists
-        if(!admin.tableExists(table_name1)){
-            HTableDescriptor tableDescriptor = new HTableDescriptor(TableName.valueOf(table_name1));
-            tableDescriptor.addFamily(new HColumnDescriptor("personal"));
-            tableDescriptor.addFamily(new HColumnDescriptor("professional"));
-            tableDescriptor.addFamily(new HColumnDescriptor("custom"));
-        
-            admin.createTable(tableDescriptor);
-         //   System.out.println("Created table powers");
-        }
-        
-        if(!admin.tableExists(table_name2)){
-            HTableDescriptor tableDescriptor = new HTableDescriptor(TableName.valueOf(table_name2));
-            tableDescriptor.addFamily(new HColumnDescriptor("nutrition"));
-            tableDescriptor.addFamily(new HColumnDescriptor("taste"));
-            admin.createTable(tableDescriptor);
-            //TODO
-           // System.out.println("Created table food");
-        }
 
-   }
+        //TODO
+ 
+        Configuration con = HBaseConfiguration.create();
+ 
+        HBaseAdmin admin = new HBaseAdmin(con);
+ 
+        HTableDescriptor tableDescriptor = new HTableDescriptor(TableName.valueOf("powers"));
+ 
+        tableDescriptor.addFamily(new HColumnDescriptor("personal"));
+        tableDescriptor.addFamily(new HColumnDescriptor("professional"));
+        tableDescriptor.addFamily(new HColumnDescriptor("custom"));
+ 
+        admin.createTable(tableDescriptor);
+ 
+        HTableDescriptor tableDescriptor1 = new HTableDescriptor(TableName.valueOf("food"));
+ 
+        tableDescriptor1.addFamily(new HColumnDescriptor("nutrition"));
+        tableDescriptor1.addFamily(new HColumnDescriptor("taste"));
+ 
+        admin.createTable(tableDescriptor1);
+ 
+    }
 }
