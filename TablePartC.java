@@ -22,23 +22,23 @@ import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.util.Bytes;
 
     public static void main(String[] args) throws IOException {
+	    
         String line = null;
 	String fileName = "input.csv";
+	    
 	  //	Instantiating	Configuration	class   
         Configuration config = HBaseConfiguration.create();
         String table_name = "powers";
+	    
 	 //	Instantiating	HTable	class
         HTable hTable = new HTable(config, table_name);
         int i = 0;
 	String spliter = ",";
+	    
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
 
-            while ((line = reader.readLine()) != null) {
-                String[] newvalue = line.split(spliter);
-		    
-		if (newvalue.length > 6){
-                   System.out.println("out of range " );
-                }           
+            do  {
+                String[] newvalue = line.split(spliter);         
            
 		    
                 Put p = new Put(Bytes.toBytes(newvalue[0]));
@@ -54,6 +54,7 @@ import org.apache.hadoop.hbase.util.Bytes;
                 hTable.put(p);
 		//System.out.println("data	inserted");
             }
+	    while ((line = reader.readLine()) != null)
 
         }
 	//	closing	HTable
