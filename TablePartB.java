@@ -18,14 +18,19 @@ import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.util.Bytes;
 
 public class TablePartB{
+	
+	
+
 
    public static void main(String[] args) throws IOException {
-
-   	HTableDescriptor[] tableDescriptor = ???;
+	   
+        Configuration config = HBaseConfiguration.create();
+        HBaseAdmin admin = new HBaseAdmin(config);
+	   
+   	HTableDescriptor[] tableDes = admin.listTables();
 	//TODO    
-	for(???){
-         System.out.println(tableDescriptor[i].getNameAsString());
+	for(int i=0; i < tableDes.length;i++){
+         System.out.println(tableDes[i].getNameAsString());
      }
    }
 }
-
