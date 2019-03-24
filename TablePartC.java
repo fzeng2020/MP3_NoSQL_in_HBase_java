@@ -34,7 +34,7 @@ public class TablePartC{
 
        try (BufferedReader br = new BufferedReader(new FileReader("input.csv"))) {
 
-           do {
+           while ((line = br.readLine()) != null){
                String[] newvalue = line.split(",");
                Put p = new Put(Bytes.toBytes(newvalue[0]));
 
@@ -55,7 +55,7 @@ public class TablePartC{
 
                table.put(p);
            }
-           while ((line = br.readLine()) != null) 
+           
 		   
        }catch(IOException e){
            e.printStackTrace();
