@@ -19,8 +19,6 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 public class TablePartA{
 
-  //  private static final String table_name1 = "powers";
- //   private static final String table_name2 = "food";
     
     public static void main(String[] args) throws IOException {
  //initilaized HbaseAdmin
