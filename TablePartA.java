@@ -35,12 +35,12 @@ public class TablePartA{
  
         admin.createTable(tableDescriptor);
  
-        HTableDescriptor tableDescriptor1 = new HTableDescriptor(TableName.valueOf("food"));
+        HTableDescriptor tableDes = new HTableDescriptor(TableName.valueOf("food"));
  
-        tableDescriptor1.addFamily(new HColumnDescriptor("nutrition"));
-        tableDescriptor1.addFamily(new HColumnDescriptor("taste"));
+        tableDes.addFamily(new HColumnDescriptor("nutrition"));
+        tableDes.addFamily(new HColumnDescriptor("taste"));
  
-        admin.createTable(tableDescriptor1);
+        admin.createTable(tableDes);
  
     }
 }
