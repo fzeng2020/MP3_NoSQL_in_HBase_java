@@ -33,7 +33,7 @@ import org.apache.hadoop.hbase.util.Bytes;
 	String spliter = ",";
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
 
-            while ((line = reader.readLine()) != null || line = reader.readLine()) !=0) {
+            while ((line = reader.readLine()) != null && (line = reader.readLine()) !=0) {
                 String[] newvalue = line.split(spliter);
                 Put p = new Put(Bytes.toBytes(newvalue[0]));
                 i++;
