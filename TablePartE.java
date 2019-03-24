@@ -24,7 +24,20 @@ public class TablePartE{
 	// TODO      
 	// DON' CHANGE THE 'System.out.println(xxx)' OUTPUT PART
 	// OR YOU WON'T RECEIVE POINTS FROM THE GRADER
-	ResultScanner scanner = ???;
+	   
+//	Instantiating	Configuration	class
+	Configuration	config	=	HBaseConfiguration.create();
+	   
+	String	tablename = "powers"				
+	HTable	table	=	new	HTable(config,	tablename);
+	Scan	scan	=	new	Scan();
+						
+	//scan.addColumn(Bytes.toBytes("personal"),	Bytes.toBytes("name"));
+	//scan.addColumn(Bytes.toBytes("personal"),	Bytes.toBytes("city"));
+						//	Getting	the	scan	result
+	   
+	   
+	ResultScanner scanner = table.getScanner(scan);
 	for (Result result = scanner.next(); result != null; result = scanner.next())
 		System.out.println(result);
    }
