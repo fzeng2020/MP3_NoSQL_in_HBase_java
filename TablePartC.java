@@ -21,44 +21,47 @@ import org.apache.hadoop.hbase.client.Scan;
 
 import org.apache.hadoop.hbase.util.Bytes;
 
-    public static void main(String[] args) throws IOException {
-	    
-        String line = null;
-	String fileName = "input.csv";
-	    
-	  //	Instantiating	Configuration	class   
-        Configuration config = HBaseConfiguration.create();
-        String table_name = "powers";
-	    
-	 //	Instantiating	HTable	class
-        HTable hTable = new HTable(config, table_name);
-        int i = 0;
-	String spliter = ",";
-	    
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+public class TablePartC{
 
-            do  {
-                String[] newvalue = line.split(spliter);         
-           
-		    
-                Put p = new Put(Bytes.toBytes(newvalue[0]));
-                i++;
-                p.add(Bytes.toBytes("personal"), Bytes.toBytes("hero"), Bytes.toBytes(newvalue[1]));
-                p.add(Bytes.toBytes("personal"), Bytes.toBytes("power"), Bytes.toBytes(newvalue[2]));
+   public static void main(String[] args) throws IOException {
 
-                p.add(Bytes.toBytes("professional"), Bytes.toBytes("name"), Bytes.toBytes(newvalue[3]));
-                p.add(Bytes.toBytes("professional"), Bytes.toBytes("xp"), Bytes.toBytes(newvalue[4]));
+	   //TODO
+       Configuration config = HBaseConfiguration.create();
+       String table_name = "powers";
+       HTable table = new HTable(config, table_name);
+       String line = "";
+       String fileName = "input.csv";	   
 
-                p.add(Bytes.toBytes("custom"), Bytes.toBytes("color"), Bytes.toBytes(newvalue[5]));
+       try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 
-                hTable.put(p);
-		//System.out.println("data	inserted");
-            }
-	    while ((line = reader.readLine()) != null)
+           do {
+               String[] newvalue = line.split(",");
+               Put p = new Put(Bytes.toBytes(newvalue[0]));
 
-        }
-	//	closing	HTable
-        hTable.close();   
+               p.add(Bytes.toBytes("personal"),
+                       Bytes.toBytes("hero"),Bytes.toBytes(newvalue[1]));
+
+               p.add(Bytes.toBytes("personal"),
+                       Bytes.toBytes("power"),Bytes.toBytes(newvalue[2]));
+
+               p.add(Bytes.toBytes("professional"),Bytes.toBytes("name"),
+                       Bytes.toBytes(newvalue[3]));
+
+               p.add(Bytes.toBytes("professional"),Bytes.toBytes("xp"),
+                       Bytes.toBytes(newvalue[4]));
+
+               p.add(Bytes.toBytes("custom"),Bytes.toBytes("color"),
+                       Bytes.toBytes(newvalue[5]));
+
+               table.put(p);
+           }
+           while ((line = br.readLine()) != null) 
+		   
+       }catch(IOException e){
+           e.printStackTrace();
+       }
+
+       table.close();
+
    }
 }
-
