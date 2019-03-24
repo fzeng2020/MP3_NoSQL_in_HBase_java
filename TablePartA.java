@@ -39,7 +39,7 @@ public class TablePartA{
             tableDescriptor.addFamily(new HColumnDescriptor("custom"));
         
             admin.createTable(tableDescriptor);
-            System.out.println("Created table powers");
+         //   System.out.println("Created table powers");
         }
         
         if(!admin.tableExists(table_name2)){
@@ -48,7 +48,7 @@ public class TablePartA{
             tableDescriptor.addFamily(new HColumnDescriptor("taste"));
             admin.createTable(tableDescriptor);
             //TODO
-            System.out.println("Created table food");
+           // System.out.println("Created table food");
         }
 
    }
