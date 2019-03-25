@@ -23,26 +23,52 @@ public class TablePartF{
 
 	// TODO      
 	// DON' CHANGE THE 'System.out.println(xxx)' OUTPUT PART
-	// OR YOU WON'T RECEIVE POINTS FROM THE GRADER      
+	// OR YOU WON'T RECEIVE POINTS FROM THE GRADER    
+	   
+	      // Instantiating Configuration class
+      Configuration config = HBaseConfiguration.create();
+
+      // Instantiating HTable class
+      HTable table = new HTable(config, "powers");	
+  
+      // Instantiating the Scan class
+      Scan scan = new Scan();	 
+  
+	   
       scan.addColumn(Bytes.toBytes("personal"), Bytes.toBytes("hero"));
       scan.addColumn(Bytes.toBytes("personal"), Bytes.toBytes("power"));
       scan.addColumn(Bytes.toBytes("professional"), Bytes.toBytes("name"));
       scan.addColumn(Bytes.toBytes("professional"), Bytes.toBytes("xp"));
       scan.addColumn(Bytes.toBytes("custom"), Bytes.toBytes("color"));
 	   
-	   
-  private Tuple joinTuples(Tuple leftTuple, Tuple rightTuple)
-    {
-		int leftTupleSize = leftTuple.getTupleDesc().numFields();
-		int rightTupleSize = rightTuple.getTupleDesc().numFields();
-		Tuple mergedTuple = new Tuple(this.getTupleDesc());
-		for (int i = 0; i < leftTupleSize; i++)
-		{
-			mergedTuple.setField(i, leftTuple.getField(i));
-		}
-		for (int i = 0; i < rightTupleSize; i++)
-		{
-			mergedTuple.setField(leftTupleSize + i, rightTuple.getField(i));
+      ResultScanner scanner = table.getScanner(scan);
+      List<MyData> tableData = new ArrayList<MyData>();
+
+	// Reading values from scan result
+      for (Result result = scanner.next(); result != null; result = scanner.next()){
+		byte[] nameValue = result.getValue(Bytes.toBytes("professional"), Bytes.toBytes("name"));
+		byte[] powerValue = result.getValue(Bytes.toBytes("personal"), Bytes.toBytes("power"));
+		byte[] colorValue = result.getValue(Bytes.toBytes("custom"), Bytes.toBytes("color"));	  
+	      
+	      	leftTuple data = new MyData(Bytes.toString(nameValue),Bytes.toString(powerValue));
+		leftTuple.add(data);	
+	      
+	      	rightTuple data = new MyData(Bytes.toString(nameValue),Bytes.toString(powerValue),Bytes.toString(colorValue));
+		rightTuple.add(data);	
+      }
+      private Tuple joinTuples(Tuple leftTuple, Tuple rightTuple)
+         {
+		int leftTupleSize = leftTuple.size();
+		int rightTupleSize = rightTuple.size();
+		 
+		for (int i = 0; i < leftTupleSize; i++){
+		
+		    Tuple left = leftTuple.get(i);
+		  
+		    for (int k = 0; k < rightTupleSize; k++){
+			Tuple right = rightTuple.get(k);
+			if(left.color.equals(right.color) && !left.name.equals(right.name)) {
+ 
 		}
 //		System.out.println("merged tuple: " + mergedTuple.toString());
 		return mergedTuple;
