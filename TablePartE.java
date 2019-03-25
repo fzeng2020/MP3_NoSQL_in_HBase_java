@@ -28,7 +28,7 @@ public class TablePartE{
 //	Instantiating	Configuration	class
 	Configuration	config	=	HBaseConfiguration.create();
 	   
-	String	tablename = "powers"				
+	String	tablename = "powers";				
 	HTable	table	=	new	HTable(config,	tablename);
 	Scan	scan	=	new	Scan();
 						
