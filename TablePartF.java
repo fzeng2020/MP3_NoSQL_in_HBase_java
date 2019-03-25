@@ -50,14 +50,14 @@ public class TablePartF{
 		byte[] powerValue = result.getValue(Bytes.toBytes("personal"), Bytes.toBytes("power"));
 		byte[] colorValue = result.getValue(Bytes.toBytes("custom"), Bytes.toBytes("color"));	  
 	      
-	      	leftTuple data = new MyData(Bytes.toString(nameValue),Bytes.toString(powerValue));
+	      	leftTuple data  = new MyData(Bytes.toString(nameValue),Bytes.toString(powerValue),Bytes.toString(colorValue));
 		leftTuple.add(data);	
 	      
 	      	rightTuple data = new MyData(Bytes.toString(nameValue),Bytes.toString(powerValue),Bytes.toString(colorValue));
 		rightTuple.add(data);	
       }
       private Tuple joinTuples(Tuple leftTuple, Tuple rightTuple)
-         {
+       { 
 		int leftTupleSize = leftTuple.size();
 		int rightTupleSize = rightTuple.size();
 		 
@@ -69,18 +69,21 @@ public class TablePartF{
 			Tuple right = rightTuple.get(k);
 			if(left.color.equals(right.color) && !left.name.equals(right.name)) {
  
-		}
 //		System.out.println("merged tuple: " + mergedTuple.toString());
-		return mergedTuple;
 	
-	String name = ???;
-	String power = ???;
-	String color = ???;
+	
+	                    String name = left.name;
+	                    String power = left.power;
+	                    String color = left.color;
 
-	String name1 = ???;
-	String power1 = ???;
-	String color1 = ???;
-	System.out.println(name + ", " + power + ", " + name1 + ", " + power1 + ", "+color);
-
+	                    String name1 = right.name;
+	                    String power1 = right.power;
+	                    String color1 = right.color;
+	                    System.out.println(name + ", " + power + ", " + name1 + ", " + power1 + ", "+color);
+			}
+		    }	    
+				
+		}
+       }	      
    }
 }
