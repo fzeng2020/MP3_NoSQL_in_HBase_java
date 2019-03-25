@@ -56,18 +56,17 @@ public class TablePartF{
 	      	rightTuple data = new MyData(Bytes.toString(nameValue),Bytes.toString(powerValue),Bytes.toString(colorValue));
 		rightTuple.add(data);	
       }
-      private Tuple joinTuples(Tuple leftTuple, Tuple rightTuple)
-       { 
-		int leftTupleSize = leftTuple.size();
-		int rightTupleSize = rightTuple.size();
+ 
+      int leftTupleSize = leftTuple.size();
+      int rightTupleSize = rightTuple.size();
 		 
-		for (int i = 0; i < leftTupleSize; i++){
+      for (int i = 0; i < leftTupleSize; i++){
 		
-		    Tuple left = leftTuple.get(i);
+	   Tuple left = leftTuple.get(i);
 		  
-		    for (int k = 0; k < rightTupleSize; k++){
-			Tuple right = rightTuple.get(k);
-			if(left.color.equals(right.color) && !left.name.equals(right.name)) {
+	   for (int k = 0; k < rightTupleSize; k++){
+		   Tuple right = rightTuple.get(k);
+		   if(left.color.equals(right.color) && !left.name.equals(right.name)) {
  
 //		System.out.println("merged tuple: " + mergedTuple.toString());
 	
@@ -80,10 +79,10 @@ public class TablePartF{
 	                    String power1 = right.power;
 	                    String color1 = right.color;
 	                    System.out.println(name + ", " + power + ", " + name1 + ", " + power1 + ", "+color);
-			}
+			
 		    }	    
 				
-		}
+	   }
        }	      
    }
 }
