@@ -26,8 +26,8 @@ public class TablePartA{
         Configuration con = HBaseConfiguration.create();
  
         HBaseAdmin admin = new HBaseAdmin(con);
- 
-        HTableDescriptor tableDescriptor = new HTableDescriptor(TableName.valueOf("powers"));
+        String tablename = "powers";
+        HTableDescriptor tableDescriptor = new HTableDescriptor(TableName.valueOf(tablename));
  
         tableDescriptor.addFamily(new HColumnDescriptor("personal"));
         tableDescriptor.addFamily(new HColumnDescriptor("professional"));
