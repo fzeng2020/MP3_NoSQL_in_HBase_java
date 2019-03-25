@@ -24,7 +24,28 @@ public class TablePartF{
 	// TODO      
 	// DON' CHANGE THE 'System.out.println(xxx)' OUTPUT PART
 	// OR YOU WON'T RECEIVE POINTS FROM THE GRADER      
-
+      scan.addColumn(Bytes.toBytes("personal"), Bytes.toBytes("hero"));
+      scan.addColumn(Bytes.toBytes("personal"), Bytes.toBytes("power"));
+      scan.addColumn(Bytes.toBytes("professional"), Bytes.toBytes("name"));
+      scan.addColumn(Bytes.toBytes("professional"), Bytes.toBytes("xp"));
+      scan.addColumn(Bytes.toBytes("custom"), Bytes.toBytes("color"));
+	   
+	   
+  private Tuple joinTuples(Tuple leftTuple, Tuple rightTuple)
+    {
+		int leftTupleSize = leftTuple.getTupleDesc().numFields();
+		int rightTupleSize = rightTuple.getTupleDesc().numFields();
+		Tuple mergedTuple = new Tuple(this.getTupleDesc());
+		for (int i = 0; i < leftTupleSize; i++)
+		{
+			mergedTuple.setField(i, leftTuple.getField(i));
+		}
+		for (int i = 0; i < rightTupleSize; i++)
+		{
+			mergedTuple.setField(leftTupleSize + i, rightTuple.getField(i));
+		}
+//		System.out.println("merged tuple: " + mergedTuple.toString());
+		return mergedTuple;
 	
 	String name = ???;
 	String power = ???;
