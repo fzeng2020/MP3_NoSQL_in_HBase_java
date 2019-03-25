@@ -27,12 +27,12 @@ public class TablePartC{
 
 	   //TODO
        Configuration config = HBaseConfiguration.create();
-        
-       HTable table = new HTable(config, "powers");
+       String tablename = "powers";
+       HTable table = new HTable(config, tablename);
        String line = "";
            
-
-       try (BufferedReader br = new BufferedReader(new FileReader("input.csv"))) {
+       String inputfile = "input.csv";
+       try (BufferedReader br = new BufferedReader(new FileReader(inputfile))) {
 
            while ((line = br.readLine()) != null){
                String[] newvalue = line.split(",");
