@@ -67,18 +67,8 @@ public class TablePartF{
 	   for (int k = 0; k < rightTupleSize; k++){
 		   Tuple right = rightTuple.get(k);
 		   if(left.color.equals(right.color) && !left.name.equals(right.name)) {
- 
-//		System.out.println("merged tuple: " + mergedTuple.toString());
-	
-	
-	                    String name = left.name;
-	                    String power = left.power;
-	                    String color = left.color;
 
-	                    String name1 = right.name;
-	                    String power1 = right.power;
-	                    String color1 = right.color;
-	                    System.out.println(name + ", " + power + ", " + name1 + ", " + power1 + ", "+color);
+	                    System.out.println(left.name + ", " + left.power + ", " + right.name + ", " + right.power + ", "+right.color);
 			
 		    }	    
 				
