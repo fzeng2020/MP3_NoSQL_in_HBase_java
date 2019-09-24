@@ -2,6 +2,7 @@
 
 
 Part I: Platform Setup
+
    A: Install Docker 
       docker-machine env
       docker-machine start default
